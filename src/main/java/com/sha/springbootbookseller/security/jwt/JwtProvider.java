@@ -1,7 +1,7 @@
 package com.sha.springbootbookseller.security.jwt;
 
 import com.sha.springbootbookseller.security.UserPrincipal;
-import com.sha.springbootbookseller.util.SecurityUtil;
+import com.sha.springbootbookseller.util.SecurityUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,9 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import java.security.Signature;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Set;
@@ -56,7 +54,7 @@ public class JwtProvider implements IJwtProvide
 
 
         Set<GrantedAuthority> authorities= Arrays.stream(claims.get("roles").toString().split(","))
-                .map(SecurityUtil::convertToAuthority)
+                .map(SecurityUtils::convertToAuthority)
                 .collect(Collectors.toSet());
 
         UserDetails userDetails=UserPrincipal.builder()
@@ -81,7 +79,7 @@ public class JwtProvider implements IJwtProvide
 
 
     private Claims extractClaims(HttpServletRequest request){
-        String token = SecurityUtil.extractAuthTokenFromRequest(request);
+        String token = SecurityUtils.extractAuthTokenFromRequest(request);
 
         if (token==null){ return null;}
 

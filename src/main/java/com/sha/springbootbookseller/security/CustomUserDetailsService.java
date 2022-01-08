@@ -2,13 +2,12 @@ package com.sha.springbootbookseller.security;
 
 import com.sha.springbootbookseller.model.User;
 import com.sha.springbootbookseller.service.IUserService;
-import com.sha.springbootbookseller.util.SecurityUtil;
+import com.sha.springbootbookseller.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.context.support.SecurityWebApplicationContextUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -24,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userService.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
 
-        Set<GrantedAuthority> authorities = Set.of(SecurityUtil.convertToAuthority(user.getRole().name()));
+        Set<GrantedAuthority> authorities = Set.of(SecurityUtils.convertToAuthority(user.getRole().name()));
 
         return UserPrincipal.builder()
                 .user(user).id(user.getId())

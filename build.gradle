@@ -22,6 +22,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'top.dcenter:justAuth-spring-security-starter:1.1.25'
+	implementation 'org.sakaiproject:sakai-userdetail-provider:21.1'
+
+	//implementation 'redis.clients:jedis:3.3.0'
+	//compile 'org.springframework.session:spring-session-data-redis'
+	//compile 'redis.clients:jedis:2.9.0'
+
 	compileOnly 'org.projectlombok:lombok'
 
 	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt

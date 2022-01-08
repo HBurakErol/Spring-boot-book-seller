@@ -1,12 +1,11 @@
 package com.sha.springbootbookseller.util;
 
-import ch.qos.logback.core.util.StringCollectionUtil;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class SecurityUtil
+public class SecurityUtils
 {
     public static final String ROLE_PREFIX = "ROLE_";
     public static final String AUTH_HEADER = "authorization";
